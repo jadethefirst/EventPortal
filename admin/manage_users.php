@@ -3,6 +3,7 @@
 session_start();
 require_once "../includes/db.php";
 require_once "../includes/auth.php";
+require_once "../includes/functions.php";
 
 // Ensure only admin can access this page
 require_admin();
