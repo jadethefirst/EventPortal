@@ -1,0 +1,4 @@
+Run this in the terminal, within the EventPortal directory:
+
+
+./push.sh

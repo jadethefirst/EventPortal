@@ -1,0 +1,43 @@
+/* variables.css
+   Purpose: Define all CSS custom properties (variables) here for colors, fonts, spacing,
+   and reusable constants to enable easy theming and consistent styling throughout the site.
+*/
+
+:root {
+  /* Typography */
+  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-size-base: 16px;
+  --font-size-lg: 20px;
+  --font-size-sm: 14px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  /* Colors - Light theme defaults (override in theme CSS) */
+  --color-bg: #ffffff;
+  --color-text: #222222;
+  --color-primary: #007bff;
+  --color-primary-hover: #0056b3;
+  --color-secondary: #6c757d;
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+
+  /* Spacing */
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  /* Border radius */
+  --border-radius: 6px;
+
+  /* Shadows */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium: rgba(0, 0, 0, 0.2);
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+}

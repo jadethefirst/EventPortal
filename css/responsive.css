@@ -1,0 +1,59 @@
+/* responsive.css
+   Purpose: Make site responsive and mobile-friendly using media queries.
+   This adjusts layouts, font sizes, and navigation for different viewport sizes.
+*/
+
+@media (max-width: 576px) {
+  /* Small phones and smaller */
+  body {
+    font-size: 14px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .container {
+    padding: var(--space-sm);
+  }
+
+  table,
+  .event-card,
+  .user-card,
+  .guest-card {
+    font-size: 14px;
+  }
+
+  .qr-thumbnail {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qr-mini {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+  /* Tablets and medium devices */
+  body {
+    font-size: 15px;
+  }
+
+  nav ul {
+    gap: var(--space-md);
+  }
+
+  .container {
+    padding: var(--space-md);
+  }
+}
+
+@media (min-width: 992px) {
+  /* Desktops and larger */
+  body {
+    font-size: var(--font-size-base);
+  }
+}

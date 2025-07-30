@@ -307,3 +307,11 @@ function getGuestCheckInStatus(PDO $pdo): array {
     ");
     return $stmt->fetch(PDO::FETCH_ASSOC) ?: ['checked_in_count' => 0, 'not_checked_in_count' => 0];
 }
+
+/**
+ * SUPPORTING FUNCTIONS
+ */
+function generate_token($length = 16) {
+    return bin2hex(random_bytes($length));
+}
+

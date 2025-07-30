@@ -1,0 +1,48 @@
+/* resets.css
+   Purpose: Normalize styling across browsers by resetting margins, paddings, and
+   setting universal box-sizing. This creates a clean baseline for styling.
+*/
+
+/* Universal reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Makes width and height include padding and border */
+}
+
+/* Remove default list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove default link underline */
+a {
+  text-decoration: none;
+  color: inherit; /* Inherit color from parent */
+}
+
+/* Images are responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Table styling reset */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Set basic body defaults */
+body {
+  line-height: 1.5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff; /* will be overridden by theme */
+  color: #222;            /* will be overridden by theme */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

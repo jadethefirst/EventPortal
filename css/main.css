@@ -1,0 +1,241 @@
+/* main.css
+   Purpose: Core styling for layout, typography, buttons, forms, tables, navigation,
+   alerts, cards, and reusable UI components. Uses CSS variables from variables.css.
+*/
+
+@import url('resets.css');
+@import url('variables.css');
+
+/* =====================
+   BODY & TYPOGRAPHY
+====================== */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  padding: var(--space-md);
+  min-height: 100vh;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-sm);
+  line-height: 1.2;
+  color: var(--color-primary);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: var(--space-md);
+}
+
+/* =====================
+   CONTAINERS
+====================== */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* =====================
+   LINKS & NAVIGATION
+====================== */
+a {
+  color: var(--color-primary);
+  transition: color var(--transition-speed);
+}
+a:hover,
+a:focus {
+  color: var(--color-primary-hover);
+  outline: none;
+}
+
+/* Navigation menu */
+nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+nav ul li {
+  list-style: none;
+}
+nav a {
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+/* =====================
+   BUTTONS
+====================== */
+button,
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  color: white;
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-sm) var(--space-md);
+  transition: background-color var(--transition-speed);
+  display: inline-block;
+  text-align: center;
+  user-select: none;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: var(--color-primary-hover);
+}
+
+/* Disabled buttons */
+button:disabled,
+input[type="submit"]:disabled {
+  background-color: var(--color-secondary);
+  cursor: not-allowed;
+}
+
+/* =====================
+   FORMS
+====================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  width: 100%;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-base);
+  transition: border-color var(--transition-speed);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* Labels */
+label {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xs);
+  display: inline-block;
+}
+
+/* =====================
+   TABLES
+====================== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 0 8px var(--shadow-light);
+}
+
+th, td {
+  padding: var(--space-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--color-secondary);
+}
+
+th {
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: var(--font-weight-bold);
+}
+
+tr:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+/* =====================
+   ALERTS
+====================== */
+.success {
+  background-color: #d4edda;
+  border: 1px solid var(--color-success);
+  color: #155724;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  border-radius: var(--border-radius);
+}
+
+.error {
+  background-color: #f8d7da;
+  border: 1px solid var(--color-error);
+  color: #721c24;
+  padding: var(--space-sm);
+  margin-bottom: var(--space-md);
+  border-radius: var(--border-radius);
+}
+
+/* =====================
+   CARDS
+====================== */
+.event-card,
+.user-card,
+.guest-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
+  box-shadow: 0 2px 5px var(--shadow-light);
+}
+
+/* QR code images */
+.qr-thumbnail {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  margin: var(--space-sm) 0;
+}
+
+.qr-mini {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--border-radius);
+  margin-left: var(--space-xs);
+}
+
+/* =====================
+   MISC
+====================== */
+/* Utility class for text centering */
+.text-center {
+  text-align: center;
+}
+
+/* Utility class for margin */
+.mt-md {
+  margin-top: var(--space-md);
+}
