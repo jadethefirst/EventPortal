@@ -1,0 +1,38 @@
+/* variables-dark.css
+   Purpose: Override CSS variables for dark mode with Apple-inspired dark theme colors.
+   This file should be loaded dynamically when dark mode is active.
+*/
+
+:root {
+  /* Backgrounds */
+  --color-bg: #1c1c1e;              /* Very dark gray, near black background */
+  --color-text: #f2f2f7;            /* Light gray text for readability */
+  --color-text-secondary: #a1a1a6;  /* Medium gray secondary text */
+
+  /* Primary colors */
+  --color-primary: #0a84ff;         /* Apple system blue brightened for dark */
+  --color-primary-hover: #0050c8;   /* Darker blue for hover in dark mode */
+  --color-secondary: #2c2c2e;       /* Dark gray backgrounds for cards/inputs */
+
+  /* Semantic colors */
+  --color-success: #30d158;         /* Bright green for success (same as light mode) */
+  --color-error: #ff375f;           /* Bright red error */
+  --color-warning: #ff9f0a;         /* Bright yellow warning */
+  --color-info: #5ac8fa;            /* Bright blue info */
+
+  /* Shadows */
+  --shadow-light: rgba(0, 0, 0, 0.9);   /* Darker shadows in dark mode for depth */
+  --shadow-medium: rgba(0, 0, 0, 0.75);
+
+  /* Border radius and spacing remain same */
+  --border-radius: 12px;
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  /* Transition speed */
+  --transition-speed: 0.3s;
+}

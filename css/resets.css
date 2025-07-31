@@ -1,48 +1,74 @@
 /* resets.css
-   Purpose: Normalize styling across browsers by resetting margins, paddings, and
-   setting universal box-sizing. This creates a clean baseline for styling.
+   Purpose: Normalize styling across browsers by resetting margins, paddings,
+   and setting universal box-sizing. This creates a clean and consistent baseline
+   for your site's custom styles.
 */
 
-/* Universal reset */
+/* =====================
+   UNIVERSAL RESET
+====================== */
+/* Reset margin and padding on all elements and their pseudo-elements */
 *,
 *::before,
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Makes width and height include padding and border */
+  /* Use border-box sizing so padding and borders are included in element width/height */
+  box-sizing: border-box;
 }
 
-/* Remove default list styles */
+/* =====================
+   LISTS
+====================== */
+/* Remove default bullets and numbers from unordered and ordered lists */
 ul,
 ol {
   list-style: none;
 }
 
-/* Remove default link underline */
+/* =====================
+   LINKS
+====================== */
+/* Remove default underline from links and inherit text color */
 a {
   text-decoration: none;
-  color: inherit; /* Inherit color from parent */
+  color: inherit;
+  /* Optional: Add smooth color transition on hover/focus */
+  transition: color 0.3s ease;
 }
 
-/* Images are responsive by default */
+/* =====================
+   IMAGES
+====================== */
+/* Make images responsive by default */
+/* max-width 100% keeps images within container width */
+/* display block removes small whitespace below images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  border-style: none; /* Remove border if any */
 }
 
-/* Table styling reset */
+/* =====================
+   TABLES
+====================== */
+/* Remove default spacing and collapse borders for consistent table layout */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* Set basic body defaults */
+/* =====================
+   BODY
+====================== */
+/* Set default font smoothing and basic typography */
+/* Background and text color will be overridden by your themes */
 body {
-  line-height: 1.5;
+  line-height: 1.5; /* Better readability */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fff; /* will be overridden by theme */
-  color: #222;            /* will be overridden by theme */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  color: #222;
+  -webkit-font-smoothing: antialiased; /* For better font rendering on WebKit */
+  -moz-osx-font-smoothing: grayscale;  /* For better font rendering on Firefox */
 }

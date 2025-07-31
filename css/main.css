@@ -1,133 +1,231 @@
-/* main.css
-   Purpose: Core styling for layout, typography, buttons, forms, tables, navigation,
-   alerts, cards, and reusable UI components. Uses CSS variables from variables.css.
-*/
+/* main.css - Core stylesheet for EventPortal */
 
+/* Import resets and variables for consistent baseline */
 @import url('resets.css');
 @import url('variables.css');
 
-/* =====================
-   BODY & TYPOGRAPHY
-====================== */
+/* ===========================
+   BODY & BASE TYPOGRAPHY
+   ===========================
+   Sets global font, colors, background, and base line height.
+*/
 body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-base);
-  line-height: 1.6;
-  padding: var(--space-md);
-  min-height: 100vh;
+  background-color: var(--color-bg);         /* Clean white/light bg, adjustable by theme */
+  color: var(--color-text);                   /* Dark text for readability */
+  font-family: var(--font-primary);           /* San-serif, modern font */
+  font-size: var(--font-size-base);           /* Comfortable base font size */
+  line-height: 1.6;                           /* Spacious lines for readability */
+  padding: var(--space-md);                   /* Generous padding around content */
+  min-height: 100vh;                          /* Ensure full viewport height */
+  -webkit-font-smoothing: antialiased;       /* Crisp font rendering on WebKit */
+  -moz-osx-font-smoothing: grayscale;        /* Crisp font rendering on Firefox (macOS) */
+  -webkit-text-size-adjust: 100%;             /* Prevent font scaling on iOS */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme/color transitions */
 }
 
-/* Headings */
+/* ===========================
+   HEADINGS - Hierarchy & Style
+   ===========================
+   Larger font sizes for clear section titles,
+   bold weight, and consistent spacing to separate content.
+*/
 h1, h2, h3, h4, h5, h6 {
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-sm);
-  line-height: 1.2;
-  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);       /* Bold for emphasis */
+  margin-bottom: var(--space-sm);             /* Space below heading */
+  line-height: 1.2;                           /* Tight line height for headings */
+  color: var(--color-primary);                 /* Theme primary color for emphasis */
+  letter-spacing: -0.02em;                     /* Slight tightening for elegance */
+  -webkit-font-smoothing: antialiased;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;                         /* Large hero titles */
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.25rem;                         /* Section headers */
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;                         /* Subsection headers */
 }
 
-/* Paragraphs */
+/* ===========================
+   PARAGRAPHS & TEXT
+   ===========================
+   Comfortable line height, subtle secondary text color for less important text,
+   and margin for separation between paragraphs.
+*/
 p {
   margin-bottom: var(--space-md);
+  color: var(--color-text-secondary);         /* Slightly lighter than main text */
+  font-weight: 400;                           /* Normal weight */
+  letter-spacing: 0.01em;
 }
 
-/* =====================
-   CONTAINERS
-====================== */
+/* ===========================
+   LINKS - Clean & Accessible
+   ===========================
+   Underline on hover/focus for clear affordance,
+   primary color, and smooth color transitions.
+*/
+a {
+  color: var(--color-primary);
+  text-decoration: none;                       /* No underline by default */
+  transition: color var(--transition-speed);
+  cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-hover);
+  text-decoration: underline;                  /* Clear interaction feedback */
+  outline-offset: 4px;                         /* Offset focus outline */
+  outline-color: var(--color-primary);
+  outline-style: solid;
+  outline-width: 2px;
+  outline-radius: var(--border-radius);
+}
+
+/* ===========================
+   LAYOUT CONTAINER
+   ===========================
+   Central content wrapper with max width,
+   automatic horizontal centering,
+   and horizontal padding that adapts on smaller screens.
+*/
 .container {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
+  /* Add subtle drop shadow for floating effect */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg);
+  transition: box-shadow 0.3s ease;
 }
 
-/* =====================
-   LINKS & NAVIGATION
-====================== */
-a {
-  color: var(--color-primary);
-  transition: color var(--transition-speed);
-}
-a:hover,
-a:focus {
-  color: var(--color-primary-hover);
-  outline: none;
+@media (max-width: 768px) {
+  .container {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
 }
 
-/* Navigation menu */
+@media (max-width: 480px) {
+  .container {
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+  }
+}
+
+/* ===========================
+   NAVIGATION MENU
+   ===========================
+   Horizontal flexbox menu with spacing, no bullets,
+   interactive links with padding and rounded corners.
+*/
 nav ul {
   display: flex;
-  gap: var(--space-md);
-}
-nav ul li {
+  gap: var(--space-lg);
   list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
+
+nav ul li {
+  margin: 0;
+}
+
 nav a {
   font-weight: var(--font-weight-bold);
   padding: var(--space-xs) var(--space-sm);
+  display: inline-block;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  color: var(--color-text);
+  user-select: none;
 }
 
-/* =====================
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive nav for small screens: stack menu vertically */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+}
+
+/* ===========================
    BUTTONS
-====================== */
+   ===========================
+   Rounded, spacious buttons with subtle gradients and shadows,
+   smooth hover states with gentle darkening.
+*/
 button,
 input[type="submit"],
 input[type="button"] {
   cursor: pointer;
-  background-color: var(--color-primary);
+  background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
   border: none;
-  border-radius: var(--border-radius);
-  color: white;
+  border-radius: 12px;
+  color: var(--color-bg);
   font-weight: var(--font-weight-bold);
-  padding: var(--space-sm) var(--space-md);
-  transition: background-color var(--transition-speed);
-  display: inline-block;
-  text-align: center;
+  padding: var(--space-md) var(--space-lg);
+  font-size: 1rem;
+  min-width: 140px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
   user-select: none;
+  text-align: center;
+  letter-spacing: 0.03em;
 }
 
 button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover {
-  background-color: var(--color-primary-hover);
+  background: linear-gradient(180deg, var(--color-primary-hover) 0%, var(--color-primary) 100%);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.16);
 }
 
-/* Disabled buttons */
 button:disabled,
 input[type="submit"]:disabled {
   background-color: var(--color-secondary);
   cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
 }
 
-/* =====================
-   FORMS
-====================== */
+/* ===========================
+   FORMS - Clean inputs with focus glow
+   ===========================
+   Full-width inputs with subtle borders and rounded corners.
+   Focus state glows softly to draw attention without harsh outlines.
+*/
 input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea,
 select {
   width: 100%;
-  padding: var(--space-sm);
-  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-lg);
   border: 1px solid var(--color-secondary);
-  border-radius: var(--border-radius);
+  border-radius: 12px;
   font-size: var(--font-size-base);
-  transition: border-color var(--transition-speed);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="text"]:focus,
@@ -136,79 +234,119 @@ input[type="password"]:focus,
 textarea:focus,
 select:focus {
   border-color: var(--color-primary);
+  box-shadow: 0 0 10px var(--color-primary);
   outline: none;
 }
 
-/* Labels */
+/* ===========================
+   LABELS
+   ===========================
+   Bold labels spaced above inputs for clarity.
+*/
 label {
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-xs);
   display: inline-block;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
 }
 
-/* =====================
-   TABLES
-====================== */
+/* ===========================
+   TABLES - Minimal, easy to read
+   ===========================
+   Full-width tables with subtle borders and highlight on hover.
+   Column headers have solid background with light text.
+*/
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: var(--space-lg);
-  box-shadow: 0 0 8px var(--shadow-light);
+  box-shadow: 0 0 8px rgba(0,0,0,0.04);
+  border-radius: var(--border-radius);
+  overflow: hidden; /* clip rounded corners */
 }
 
 th, td {
-  padding: var(--space-sm);
+  padding: var(--space-md);
   text-align: left;
   border-bottom: 1px solid var(--color-secondary);
+  vertical-align: middle;
+  color: var(--color-text);
+  font-weight: 500;
 }
 
 th {
   background-color: var(--color-primary);
-  color: white;
+  color: var(--color-bg);
   font-weight: var(--font-weight-bold);
+  letter-spacing: 0.03em;
+  user-select: none;
 }
 
 tr:hover {
   background-color: var(--color-secondary);
-  color: white;
+  color: var(--color-text);
+  cursor: default;
 }
 
-/* =====================
-   ALERTS
-====================== */
+/* ===========================
+   ALERTS - Subtle, color-coded messages
+   ===========================
+   Use green for success, red for errors,
+   rounded boxes with padding and slight shadow.
+*/
 .success {
-  background-color: #d4edda;
-  border: 1px solid var(--color-success);
-  color: #155724;
-  padding: var(--space-sm);
+  background-color: #e6f4ea;
+  border: 1px solid #2ecc71;
+  color: #27ae60;
+  padding: var(--space-md);
   margin-bottom: var(--space-md);
   border-radius: var(--border-radius);
+  box-shadow: 0 1px 4px rgba(39,174,96,0.3);
+  font-weight: 600;
 }
 
 .error {
-  background-color: #f8d7da;
-  border: 1px solid var(--color-error);
-  color: #721c24;
-  padding: var(--space-sm);
+  background-color: #fcebea;
+  border: 1px solid #e74c3c;
+  color: #c0392b;
+  padding: var(--space-md);
   margin-bottom: var(--space-md);
   border-radius: var(--border-radius);
+  box-shadow: 0 1px 4px rgba(231,76,60,0.3);
+  font-weight: 600;
 }
 
-/* =====================
-   CARDS
-====================== */
+/* ===========================
+   CARDS - Used for events, users, guests
+   ===========================
+   Clean white backgrounds with subtle borders and shadows
+   for a modern "floating" effect.
+*/
 .event-card,
 .user-card,
 .guest-card {
   background-color: var(--color-bg);
   border: 1px solid var(--color-secondary);
   border-radius: var(--border-radius);
-  padding: var(--space-md);
+  padding: var(--space-lg);
   margin-bottom: var(--space-lg);
-  box-shadow: 0 2px 5px var(--shadow-light);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: box-shadow 0.3s ease;
 }
 
-/* QR code images */
+.event-card:hover,
+.user-card:hover,
+.guest-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+/* ===========================
+   QR CODE IMAGES
+   ===========================
+   Fixed size, border, rounded corners to fit theme.
+*/
 .qr-thumbnail {
   width: 150px;
   height: 150px;
@@ -227,15 +365,27 @@ tr:hover {
   margin-left: var(--space-xs);
 }
 
-/* =====================
-   MISC
-====================== */
-/* Utility class for text centering */
+/* ===========================
+   UTILITY CLASSES
+   ===========================
+   Common helpers for text alignment and spacing.
+*/
 .text-center {
   text-align: center;
 }
 
-/* Utility class for margin */
 .mt-md {
   margin-top: var(--space-md);
+}
+
+/* ===========================
+   RESPONSIVENESS
+   ===========================
+   Collapse navigation to vertical stack on smaller screens.
+*/
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
 }

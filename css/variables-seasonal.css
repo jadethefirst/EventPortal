@@ -1,0 +1,40 @@
+/* variables-seasonal.css
+   Purpose: Provide seasonal color overrides to add subtle seasonal theming.
+   These override only specific variables and keep the rest consistent.
+*/
+
+/* SPRING - fresh, light green and bright colors */
+:root.spring {
+  --color-primary: #28a745;          /* Fresh green */
+  --color-primary-hover: #1e7e34;
+  --color-secondary: #d4edda;        /* Light green background */
+  --color-bg: #f9fff9;               /* Very light greenish background */
+  --color-text: #1b4d21;             /* Dark green text */
+}
+
+/* SUMMER - warm, vibrant blues and yellows */
+:root.summer {
+  --color-primary: #007aff;          /* Vibrant blue */
+  --color-primary-hover: #0051a8;
+  --color-secondary: #d0e7ff;        /* Light blue background */
+  --color-bg: #f0f8ff;               /* Very light blue */
+  --color-text: #003f7f;             /* Dark blue text */
+}
+
+/* AUTUMN - warm oranges, browns */
+:root.autumn {
+  --color-primary: #d2691e;          /* Chocolate orange */
+  --color-primary-hover: #a0522d;
+  --color-secondary: #f5e1c1;        /* Light tan background */
+  --color-bg: #fff8f0;               /* Creamy off-white */
+  --color-text: #5b342e;             /* Dark brown text */
+}
+
+/* WINTER - cool blues and icy tones */
+:root.winter {
+  --color-primary: #0a84ff;          /* Icy bright blue */
+  --color-primary-hover: #0040c8;
+  --color-secondary: #d9e6ff;        /* Very light blue background */
+  --color-bg: #f5f8ff;               /* Almost white with blue tint */
+  --color-text: #1c3c6a;             /* Dark blue-gray text */
+}

@@ -1,7 +1,7 @@
 <?php
-$host = 'localhost';
+$host = 'localhost'; // Or whatever is shown in MyWeb’s phpMyAdmin
 $db   = 'chang11v_event_portal';
-$user = 'admin';
+$user = 'admin';  // Usually the same as your cPanel/MyWeb login
 $pass = 'admin123';
 $charset = 'utf8';
 
@@ -13,8 +13,8 @@ $options = [
 ];
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    die("❌ Database connection failed: " . $e->getMessage());
+     die("❌ Database connection failed: " . $e->getMessage());
 }
 ?>

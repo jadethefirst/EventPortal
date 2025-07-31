@@ -1,23 +1,31 @@
 /* responsive.css
-   Purpose: Make site responsive and mobile-friendly using media queries.
-   This adjusts layouts, font sizes, and navigation for different viewport sizes.
+   Purpose: Make site responsive and mobile-friendly using CSS media queries.
+   Adjust layouts, font sizes, navigation, and component sizes to improve usability
+   on different screen widths (phones, tablets, desktops).
 */
 
+/* =====================
+   SMALL DEVICES (MOBILE PHONES)
+   max-width: 576px
+====================== */
 @media (max-width: 576px) {
-  /* Small phones and smaller */
+  /* Slightly smaller font size for small screens */
   body {
     font-size: 14px;
   }
 
+  /* Stack navigation vertically and add spacing */
   nav ul {
     flex-direction: column;
     gap: var(--space-sm);
   }
 
+  /* Reduce container side padding for narrow screens */
   .container {
     padding: var(--space-sm);
   }
 
+  /* Smaller font size in tables and cards */
   table,
   .event-card,
   .user-card,
@@ -25,6 +33,7 @@
     font-size: 14px;
   }
 
+  /* Smaller QR code thumbnails for mobile */
   .qr-thumbnail {
     width: 100px;
     height: 100px;
@@ -36,24 +45,37 @@
   }
 }
 
+/* =====================
+   MEDIUM DEVICES (TABLETS)
+   min-width: 577px and max-width: 991px
+====================== */
 @media (min-width: 577px) and (max-width: 991px) {
-  /* Tablets and medium devices */
+  /* Slightly larger font size for tablets */
   body {
     font-size: 15px;
   }
 
+  /* Navigation horizontal with moderate gaps */
   nav ul {
     gap: var(--space-md);
   }
 
+  /* Medium padding for container */
   .container {
     padding: var(--space-md);
   }
 }
 
+/* =====================
+   LARGE DEVICES (DESKTOPS)
+   min-width: 992px
+====================== */
 @media (min-width: 992px) {
-  /* Desktops and larger */
+  /* Use base font size defined in variables.css */
   body {
     font-size: var(--font-size-base);
   }
+
+  /* Container max width set in main.css */
+  /* Navigation spacing and layout defined in main.css */
 }

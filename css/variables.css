@@ -5,7 +5,8 @@
 
 :root {
   /* Typography */
-  --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                  Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   --font-size-base: 16px;
   --font-size-lg: 20px;
   --font-size-sm: 14px;
@@ -13,30 +14,31 @@
   --font-weight-bold: 700;
 
   /* Colors - Light theme defaults (override in theme CSS) */
-  --color-bg: #ffffff;
-  --color-text: #222222;
-  --color-primary: #007bff;
-  --color-primary-hover: #0056b3;
-  --color-secondary: #6c757d;
-  --color-success: #28a745;
-  --color-error: #dc3545;
-  --color-warning: #ffc107;
-  --color-info: #17a2b8;
+  --color-bg: #ffffff;                         /* Clean white background */
+  --color-text: #1d1d1f;                       /* Dark gray for main text, softer than black */
+  --color-text-secondary: #6e6e73;             /* Medium gray for secondary text */
+  --color-primary: #0071e3;                    /* Apple-like blue */
+  --color-primary-hover: #005bb5;              /* Darker blue for hover */
+  --color-secondary: #f2f2f7;                  /* Light gray backgrounds and borders */
+  --color-success: #30d158;                    /* Apple green success */
+  --color-error: #ff375f;                      /* Apple red error */
+  --color-warning: #ff9f0a;                    /* Apple yellow warning */
+  --color-info: #5ac8fa;                       /* Apple light blue info */
 
-  /* Spacing */
-  --space-xxs: 2px;
-  --space-xs: 4px;
-  --space-sm: 8px;
+  /* Spacing - based on 8px grid system for consistency */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
   --space-md: 16px;
-  --space-lg: 32px;
-  --space-xl: 48px;
+  --space-lg: 24px;
+  --space-xl: 40px;
 
-  /* Border radius */
-  --border-radius: 6px;
+  /* Border radius - softened for modern rounded corners */
+  --border-radius: 12px;
 
-  /* Shadows */
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-medium: rgba(0, 0, 0, 0.2);
+  /* Shadows - subtle and layered */
+  --shadow-light: rgba(0, 0, 0, 0.06);
+  --shadow-medium: rgba(0, 0, 0, 0.12);
 
   /* Transitions */
   --transition-speed: 0.3s;
