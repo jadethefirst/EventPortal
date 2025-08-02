@@ -1,11 +1,21 @@
 <?php
-$host = 'localhost'; // Or whatever is shown in MyWeb’s phpMyAdmin
+// Database server hostname (often 'localhost' on MyWeb)
+$host = 'localhost';
+
+// Database name on MyWeb
 $db   = 'chang11v_event_portal';
-$user = 'admin';  // Usually the same as your cPanel/MyWeb login
+
+// MyWeb database username
+$user = 'chang11v_event_portal_user';
+
+// MyWeb database password — this is the password you set for the MyWeb database user, NOT your MyWeb login password!
 $pass = 'admin123';
-$charset = 'utf8';
+
+// Character set to use for connection and queries
+$charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,

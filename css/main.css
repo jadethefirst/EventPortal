@@ -389,3 +389,159 @@ tr:hover {
     gap: var(--space-md);
   }
 }
+
+/* ===========================
+   HEADER & NAVIGATION
+   ===========================
+   Styles for the header container, navigation menu,
+   and dark mode toggle to ensure clean layout, accessibility,
+   and theme consistency.
+*/
+
+/* Header container: flex layout for logo, nav, and controls */
+header .header-content {
+  display: flex;
+  justify-content: space-between; /* Spread items across */
+  align-items: center;            /* Vertically center */
+  padding: var(--space-md);
+  gap: var(--space-lg);
+  flex-wrap: wrap;                /* Wrap on small screens */
+  background-color: var(--color-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+}
+
+/* Site logo/title: prominent, clickable link */
+header .site-logo a {
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+header .site-logo a:hover,
+header .site-logo a:focus {
+  color: var(--color-primary-hover);
+  outline: none;
+}
+
+/* Navigation menu: horizontally laid out with icon + text vertically stacked */
+header nav.main-menu ul {
+  list-style: none;
+  display: flex;
+  gap: var(--space-lg);
+  padding-left: 0;
+  margin: 0;
+  align-items: center;
+}
+
+/* Each menu item resets default margin */
+header nav.main-menu ul li {
+  margin: 0;
+}
+
+/* Menu links: flex column for icon above text */
+header nav.main-menu ul li a {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+  user-select: none;
+  font-size: 0.85rem;
+}
+
+/* Hover/focus states for menu links for accessibility */
+header nav.main-menu ul li a:hover,
+header nav.main-menu ul li a:focus {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon size in menu */
+header nav.main-menu ul li a i {
+  font-size: 1.8rem; /* Visibly large */
+  pointer-events: none; /* Prevent icon intercepting clicks */
+}
+
+/* Hide text label on very small screens, keep icons only */
+@media (max-width: 480px) {
+  header nav.main-menu ul li a {
+    font-size: 0; /* Hide text */
+  }
+  header nav.main-menu ul li a .menu-text {
+    display: none;
+  }
+}
+
+/* Dark Mode Toggle Label */
+header label[for="darkModeCheckbox"] {
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  transition: color var(--transition-speed);
+}
+
+header label[for="darkModeCheckbox"]:hover,
+header label[for="darkModeCheckbox"]:focus {
+  color: var(--color-primary);
+  outline: none;
+}
+
+/* Dark Mode Checkbox */
+#darkModeCheckbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  accent-color: var(--color-primary); /* Color the checkbox in supporting browsers */
+}
+
+/* User profile/login links container */
+header > div > div:last-child > a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-speed);
+}
+
+header > div > div:last-child > a:hover,
+header > div > div:last-child > a:focus {
+  color: var(--color-primary);
+  outline: none;
+}
+
+/* User profile/login icons */
+header > div > div:last-child > a i {
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+
+/* On smaller devices, stack header content vertically with spacing */
+@media (max-width: 600px) {
+  header .header-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+  }
+  /* Center navigation menu */
+  header nav.main-menu ul {
+    justify-content: center;
+  }
+}

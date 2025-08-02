@@ -1,69 +1,65 @@
 <?php
-// Include database connection and shared functions
+// Include database connection and shared utilities
 require_once "includes/db.php";
 require_once "includes/functions.php";
-
-// Include site header (HTML head, nav)
 require_once "includes/header.php";
 
-// Initialize variables
-$name = $email = $password = $confirm_password = "";
+// Initialize form fields and feedback messages
+$full_name = $email = $password = $confirm_password = "";
 $error = $success = "";
 
-// Process form submission
+// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanitize and trim inputs
-    $name = trim($_POST['name'] ?? "");
+    // Sanitize user inputs
+    $full_name = trim($_POST['name'] ?? "");
     $email = trim($_POST['email'] ?? "");
     $password = $_POST['password'] ?? "";
     $confirm_password = $_POST['confirm_password'] ?? "";
 
-    // Validate presence of all fields
-    if (!$name || !$email || !$password || !$confirm_password) {
-        $error = "Please fill in all fields.";
-    }
-    // Validate email format
-    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Invalid email format.";
-    }
-    // Validate matching passwords
-    elseif ($password !== $confirm_password) {
+    // Basic form validation
+    if (!$full_name || !$email || !$password || !$confirm_password) {
+        $error = "Please fill in all required fields.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Please enter a valid email address.";
+    } elseif ($password !== $confirm_password) {
         $error = "Passwords do not match.";
-    }
-    // Check if email already registered
-    elseif (user_exists($pdo, $email)) {
-        $error = "Email already registered.";
-    }
-    else {
-        // Hash the password securely
+    } elseif (user_exists($pdo, $email)) {
+        $error = "An account with this email already exists.";
+    } else {
+        // Securely hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert user with role client and status pending approval
-        $stmt = $pdo->prepare("
-            INSERT INTO users (name, email, password, role_id, status)
-            VALUES (?, ?, ?, (SELECT id FROM roles WHERE name = 'client'), 'pending')
-        ");
-        $stmt->execute([$name, $email, $hashed_password]);
+        try {
+            // Insert the new user into the USERS table
+            $stmt = $pdo->prepare("
+                INSERT INTO users (full_name, email, password_hash, role, status)
+                VALUES (?, ?, ?, 'client', 'pending')
+            ");
+            $stmt->execute([$full_name, $email, $hashed_password]);
 
-        // Set success message and clear form
-        $success = "Registration successful! Await admin approval before you can log in.";
-        $name = $email = $password = $confirm_password = "";
+            // Registration success message
+            $success = "Registration successful! Please wait for admin approval before logging in.";
+            $full_name = $email = $password = $confirm_password = "";
+        } catch (PDOException $e) {
+            // Database-level error
+            $error = "An error occurred while registering. Please try again later.";
+        }
     }
 }
 
-// Helper function to check if user exists by email
+// Helper to check if a user with the given email exists
 function user_exists($pdo, $email) {
     $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
     $stmt->execute([$email]);
-    // Returns true if count > 0
     return $stmt->fetchColumn() > 0;
 }
 ?>
 
+<!-- ==================== HTML OUTPUT ==================== -->
 <div class="container">
     <h1>Register as a Client</h1>
 
-    <!-- Show success or error -->
+    <!-- Success and error feedback -->
     <?php if ($success): ?>
         <div class="success"><?php echo htmlspecialchars($success); ?></div>
     <?php elseif ($error): ?>
@@ -72,8 +68,8 @@ function user_exists($pdo, $email) {
 
     <!-- Registration form -->
     <form method="post" action="">
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>" required><br><br>
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($full_name); ?>" required><br><br>
 
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br><br>
@@ -86,9 +82,8 @@ function user_exists($pdo, $email) {
 
         <button type="submit">Register</button>
     </form>
+
+    <p>Already have an account? <a href="login.php">Log in here</a>.</p>
 </div>
 
-<?php
-// Include common footer
-require_once "includes/footer.php";
-?>
+<?php require_once "includes/footer.php"; ?>
